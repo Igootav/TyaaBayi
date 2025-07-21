@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Tyaa Balita</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #ff85a2;
+            --secondary: #fdc8d7;
+            --dark: #5e2840;
+            --light: #fff4f7;
+            --accent: #ffb6c1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animasi jatuhnya hati */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--primary);
+            animation: fall linear forwards;
+            user-select: none;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83fc1dab-609a-46dd-b6c3-cfff2990d2cf.png') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        header .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary), 0 0 20px var(--primary);
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--primary), 0 0 40px var(--primary);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+        
+        /* Main section */
+        .main-content {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Couple section */
+        .couple-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            align-items: center;
+        }
+        
+        .couple-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .couple-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .couple-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 5s ease-in-out;
+        }
+        
+        .couple-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .couple-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem;
+        }
+        
+        .couple-text h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 100PX;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .couple-text p {
+            font-size: 20px;
+        }
+        
+        /* Quotes section */
+        .quotes-section {
+            background-color: white;
+            padding: 3rem 1rem;
+            margin: 3rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quotes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/1920x1080') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .quotes-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-container {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+            position: absolute;
+            width: 100%;
+            padding: 0 1rem;
+        }
+        
+        .quote.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quote-author {
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .quote.active + .quote-author {
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            padding: 2rem 1rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-title {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            aspect-ratio: 1/1;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 5s ease-in-out;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            padding: 3rem 1rem;
+            background-color: white;
+            margin: 3rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-title {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            top: 15px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            border-width: 8px 0 8px 8px;
+            border-color: transparent transparent transparent var(--secondary);
+            right: -8px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            border-width: 8px 8px 8px 0;
+            border-color: transparent var(--secondary) transparent transparent;
+            left: -8px;
+        }
+        
+        /* Map section */
+        .map-section {
+            height: 400px;
+            margin: 3rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 182, 193, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .map-marker {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            position: relative;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            to {
+                transform: rotate(-45deg) translateY(-10px);
+            }
+        }
+        
+        .map-marker::after {
+            content: '';
+            width: 60%;
+            height: 60%;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+        }
+        
+        /* Love letter */
+        .letter-section {
+            background-color: white;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .letter-section::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed var(--primary);
+            pointer-events: none;
+            border-radius: 8px;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .letter-header h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .letter-date {
+            font-style: italic;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+        
+        .letter-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: right;
+            margin-top: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/1920x1080') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        footer .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-heart {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .couple-section {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                border-width: 8px 8px 8px 0;
+                border-color: transparent var(--secondary) transparent transparent;
+                left: -8px;
+                right: auto;
+            }
+        }
+        
+        /* Music player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        
+        .music-player:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-icon {
+            color: white;
+            font-size: 24px;
+        }
+        
+        /* Floating action button */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s;
+            font-size: 20px;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            background-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    
+    <header>
+        <div class="content">
+            <h1>Untuk Kamu, Sayangku</h1>
+            <p class="subtitle">Semoga Kamu Suka Yaa hehe</p>
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <section class="couple-section">
+            <div class="couple-image">
+                <img src="FOTOUTAMA.jpg" alt="Pasangan sedang berpegangan tangan dengan latar belakang matahari terbenam, memakai pakaian casual dengan senyum bahagia" />
+            </div>
+            <div class="couple-text">
+                <h2>Kesayanganku</h2>
+                <p>Kadang aku suka heran sendiri, gimana bisa ya kamu masuk ke hidup aku secepat itu, terus tiba-tiba jadi segalanya. Awalnya tuh cuma iseng ngobrol, ketawa-ketawa nggak jelas, tapi dari situ aku mulai sadar, ada sesuatu di kamu yang bikin aku betah. Nggak tahu ya, kamu tuh punya vibes yang susah dijelasin, kayak nyaman, hangat, kayak rumah tapi versi yang bisa ngajak ngobrol dan bercanda tiap hari. Hari-hari yang biasanya cuma aku lewatin gitu-gitu aja, sekarang jadi lebih hidup karena kamu. Bangun tidur yang biasanya cuma scroll HP asal, sekarang jadi semangat karena pengen lihat chat dari kamu duluan. Dan malam yang dulu cuma jadi waktu buat rebahan, sekarang malah jadi momen paling aku tunggu karena bisa ngobrol panjang sama kamu sebelum tidur. Aku nggak pernah nyangka bisa se-nempel ini sama seseorang, tapi kamu beda—kamu bikin aku ngerasa kayak “oh, ini ya rasanya disayang dan nyayangin seseorang sepenuh hati.”</p>
+                <p>Kamu tahu nggak, kehadiran kamu tuh pelan-pelan ngerubah aku. Aku yang dulu cuek, sekarang bisa jadi overthinking cuma karena kamu nggak bales chat sejam. Aku yang dulu males nanya kabar orang, sekarang jadi pengen tahu kamu lagi apa, udah makan belum, capek atau nggak hari ini. Aku yang dulu takut buat deket sama orang, sekarang malah berharap kamu nggak pernah pergi. Lucu ya, betapa banyak hal kecil dari kamu yang sekarang jadi hal besar buat aku. Senyum kamu, cara kamu ngetik, cara kamu manja atau ngeyel, semua itu aku simpen dalam kepala dan hati aku. Aku tahu kita nggak selalu mulus, kadang ada salah paham, kadang aku yang terlalu banyak maunya. Tapi aku serius. Aku nggak main-main. Kalau kamu tanya kenapa aku bisa sayang banget sama kamu, aku juga nggak bisa jawab dengan pasti. Karena perasaan itu bukan buat dijelasin, tapi buat dirasain. Dan yang aku rasain sekarang, cuma satu: aku nggak pengen kehilangan kamu, titik.</p>
+            </div>
+        </section>
+        
+        <section class="quotes-section">
+            <div class="quotes-content">
+                <h2>Untuk Kamu</h2>
+                <div class="quote-container">
+                    <div class="quote active">
+                        "Jika aku ditanya apa definisi kebahagiaan, aku bakal melihat ke arahmu."
+                    </div>
+                    <div class="quote-author">- Quotes untukmu</div>
+                    
+                    <div class="quote">
+                        "Di antara miliaran galaksi dan triliunan bintang, aku memilihmu sebagai tempat terindah untuk mendarat."
+                    </div>
+                    <div class="quote-author">- Alam semesta bersaksi</div>
+                    
+                    <div class="quote">
+                        "Aku tak perlu matahari jika memiliki senyummu, karena cahayamu cukup menerangi seluruh hidupku."
+                    </div>
+                    <div class="quote-author">- Pujangga cintamu</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="gallery-section">
+            <h2 class="gallery-title">Kenangan Bersama</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="foto1.jpg" alt="Momen pertama bertemu di kafe dengan latar belakang buku dan kopi" />
+                </div>
+                <div class="gallery-item">
+                    <img src="foto2.jpg" alt="Foto bersama di pantai dengan jembatan kayu dan matahari terbenam" />
+                </div>
+                <div class="gallery-item">
+                    <img src="foto3.jpg" alt="Selfie bersama memakai topi dengan latar belakang pegunungan" />
+                </div>
+                <div class="gallery-item">
+                    <img src="foto4.jpg" alt="Tangan saling berpegangan dengan cincin matching di jari manis" />
+                </div>
+                <div class="gallery-item">
+                    <img src="foto5.jpg" alt="Momen makan malam romantis dengan lilin dan anggur merah" />
+                </div>
+                <div class="gallery-item">
+                    <img src="foto6.jpg" alt="Foto candid tertawa bersama di taman bunga dengan gaun putih" />
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline-section">
+            <h2 class="timeline-title">Perjalanan Kita</h2>
+            <div class="timeline">
+                <div class="timeline-item active">
+                    <div class="timeline-date">9 July 2025</div>
+                    <div class="timeline-content">
+                        <h3>Pertama Ketemu</h3>
+                        <p>Ciee yang like profile tele ku wkwk</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">9 July 2025</div>
+                    <div class="timeline-content">
+                        <h3>Pertama Kali Moots Ig</h3>
+                        <p>wihh tukeran ig sama anak cantik nih</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">13 July 2025</div>
+                        <div class="timeline-content">
+                        <h3>Wahh undah pindah wa nih</h3>
+                        <p>Akhirnya pindah ke wa dari sekian lama wkwk</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">16 July 2025</div>
+                    <div class="timeline-content">
+                        <h3>Udah Vc an Aja Nih wkwk</h3>
+                        <p>Seneng banget rasanya di telfon sama anak cantik wkwk, meskipun sering pake filter ngeselin huuuuu</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">21 July 2025 - Selamanya</div>
+                    <div class="timeline-content">
+                        <h3>Sekarang</h3>
+                        <p>Semoga kita bisa terus kenal tanpa asing ya sayang, aku gamau banget hal itu terjadi di dalam hubungan yang selucu imi hehe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="map-section">
+            <div class="map-overlay">
+                <div class="map-marker"></div>
+            </div>
+            <iframe 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                scrolling="no" 
+                marginheight="0" 
+                marginwidth="0" 
+                src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=1%20Grafton%20Street,%20Dublin,%20Ireland&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+            ></iframe>
+        </section>
+        
+        <section class="letter-section">
+            <div class="letter-header">
+                <h2>Surat Untukmu</h2>
+                <div class="letter-date">Hari ini, di mana pun kita berada</div>
+            </div>
+            <div class="letter-content">
+                <p>Sayangku,</p>
+                <p>Setiap kali aku coba ngejelasin perasaanku, aku gabisa karna aku gatau juga kenapa perasaan ini bisa datang dengan sendirinya, dan aku juga sudah berharap perasaan ini gapernah hilang selamanya daan sampai kapanpun.</p>
+                <p>Dan juga kalau dibilang seberapa mau aku ketemu sama kamu, gausah ditanya aku tuh malah pengen banget ketemu sama kamu tauu, meskipun gabisa dalam waktu dekat ini, tapi yang penting aku minta kamu sabar ya sayang? karna aku bakal pastiin aku kesana dan ketemu sama balita satu ini hehehh.</p>
+                <p>Semoga kamu juga selalu di dampingi hal-hal baik yaa sayangg, karna kalau sampe kamu nangis tuh rasanya aku tuh ikutan sedih, makanya jangan sedih yaa sayang, kalau ada apa-apa cerita aja sama aku okeyy? aku bakal selalu ada 24/7 buat kamu balitaa kecilkuu.</p>
+                <p>Maafkan aku juga yaa kalau ada perilaku ku yang buat kamu ga nyaman/risih gitu, tapi aku ngelakuin semua itu karna aku sayang sama kamu cantikk, da ajari aku juga jadi cowo yang kamu mau.</p>
+                <p>Dan kalau kamu cukup dengan 1 cowo, aku seorang. Maka apapun itu bakal selalu aku usahain buat kamu sayanggg.. apapun ituuu</p>
+            </div>
+            <div class="letter-signature">♥ Kamu punyaku selamanya</div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="content">
+            <div class="footer-heart">♥</div>
+            <p>Hari ini, esok, dan selamanya.</p>
+            <p>Terima kasih telah menjadi bagian dari hidupku.</p>
+        </div>
+    </footer>
+    
+    <div class="music-player" onclick="toggleMusic()">
+        <div class="music-icon">♪</div>
+        <audio id="bg-music" loop>
+            <source src="SpotiDownloader.com - bergema sampai selamanya - Nadhif Basalamah.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <div class="fab" onclick="animateHeart()">♥</div>
+    
+    <script>
+        // Animate hearts falling
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Quotes rotation
+        function rotateQuotes() {
+            const quotes = document.querySelectorAll('.quote');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                quotes[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % quotes.length;
+                quotes[currentIndex].classList.add('active');
+                
+                // Also toggle author
+                const authors = document.querySelectorAll('.quote-author');
+                authors.forEach(author => author.style.opacity = 0);
+                setTimeout(() => {
+                    authors[currentIndex].style.opacity = 1;
+                }, 300);
+            }, 5000);
+        }
+        
+        // Timeline animation on scroll
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+        
+        // Music toggle
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const musicIcon = document.querySelector('.music-icon');
+            
+            if (music.paused) {
+                music.play();
+                musicIcon.innerHTML = '♪';
+                musicIcon.style.animation = 'none';
+            } else {
+                music.pause();
+                musicIcon.innerHTML = '♫';
+                musicIcon.style.animation = 'pulse 1.5s infinite';
+            }
+        }
+        
+        // Heart animation on click
+        function animateHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '♥';
+            heart.style.left = (event.clientX / window.innerWidth * 100) + 'vw';
+            heart.style.top = (event.clientY / window.innerHeight * 100) + 'vh';
+            heart.style.animationDuration = '2s';
+            heart.style.fontSize = '40px';
+            heart.style.color = '#ff5050';
+            heart.style.position = 'fixed';
+            heart.style.zIndex = '9999';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+        
+        // Initialize all animations
+        window.onload = function() {
+            createHearts();
+            rotateQuotes();
+            animateTimeline();
+            
+            // Click effect for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1.05)';
+                    }, 300);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
+
